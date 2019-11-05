@@ -18,7 +18,7 @@ $ pip install -r requirements.txt
 
 #### Predict a image
 ```bash
-python demo.py --image "path_to_image" --save "save_directory"
+python demo.py --image "path_to_image" --save "output_directory"
 ```
 
 
