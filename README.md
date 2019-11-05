@@ -14,4 +14,11 @@ $ conda create --name env python==3.7 -y
 $ conda activate env
 $ pip install -r requirements.txt
 ```
+# Test
+
+#### Predict a image
+```bash
+python demo.py --image "path_to_image" --save "save_directory"
+```
+
 
