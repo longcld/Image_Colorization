@@ -16,7 +16,7 @@ $ pip install -r requirements.txt
 ```
 # Test
 
-#### Predict a s image
+#### Predict a single image
 ```bash
 $ python demo.py --image "path_to_image" --save "output_directory"
 ```
