@@ -56,8 +56,8 @@ if __name__ == '__main__':
 
     bgr = cv.imread(filename)
     gray = cv.imread(filename, 0)
-    bgr = cv.resize(bgr, (img_rows, img_cols), cv.INTER_CUBIC)
-    gray = cv.resize(gray, (img_rows, img_cols), cv.INTER_CUBIC)
+    bgr = cv.resize(bgr, (img_rows, img_cols))
+    gray = cv.resize(gray, (img_rows, img_cols))
 
     lab = cv.cvtColor(bgr, cv.COLOR_BGR2LAB)
     L = lab[:, :, 0]
@@ -80,8 +80,8 @@ if __name__ == '__main__':
     X_a = np.sum(X_colorized * q_a, 1).reshape((h, w))
     X_b = np.sum(X_colorized * q_b, 1).reshape((h, w))
 
-    X_a = cv.resize(X_a, (img_rows, img_cols), cv.INTER_CUBIC)
-    X_b = cv.resize(X_b, (img_rows, img_cols), cv.INTER_CUBIC)
+    X_a = cv.resize(X_a, (img_rows, img_cols))
+    X_b = cv.resize(X_b, (img_rows, img_cols))
 
     X_a = X_a + 128
     X_b = X_b + 128

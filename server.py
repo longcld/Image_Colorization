@@ -1,16 +1,24 @@
 import os
-from flask import Flask, request, redirect, url_for, send_file
+from flask import Flask, request, redirect, url_for, send_file, send_from_directory
+from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 
+
+
 UPLOAD_FOLDER = './uploads'
-SAVE_FOLDER = './out'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['SAVE_FOLDER'] = SAVE_FOLDER
+
+@app.route('/out/<path:path>')
+def send_js(path):
+    return send_from_directory('out', path)
 
 @app.route('/upload', methods=["GET", "POST"])
+@cross_origin()
 def upload_file():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -32,11 +40,12 @@ def upload_file():
             # processm save file
             file.save(filenameToResponse)
             
-            outputFileName = './out/' + filename
-            command = 'python demo.py --image ' + filenameToResponse + ' --save ./out/' 
-            
-            print(command)
+            name = filename.split('.')[0]
+            print(name)
+            command = 'python demo.py -i '+ filenameToResponse + ' -s out/'
             os.system(command)
+
+            #print(filenameToResponse)
             # response file to client
-            return send_file(outputFileName)
+            return 'http://localhost:5000/out/' + filename + '_out.png'
         return False
