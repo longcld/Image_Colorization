@@ -21,4 +21,14 @@ $ pip install -r requirements.txt
 $ python demo.py --image "path_to_image" --save "output_directory"
 ```
 
+#### Run server
+
+#### Modify server.py
+
+```bash
+$ FLASK_APP=server.py flask run
+```
+
+#### Use postman to test, now we dont have an user interface.
+
 
